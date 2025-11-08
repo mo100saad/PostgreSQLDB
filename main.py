@@ -26,3 +26,16 @@ def get_connection():
         user=DB_USER,
         password=DB_PASSWORD
     )
+
+def getAllstudents():
+    try:
+        con = get_connection()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM students;")
+        rows = cur.fetchall()
+        printf("\n--- All Students ---") #Text display before saying students
+        for row in rows:
+            print(row)
+        print("--------------------\n")
+    except Exception as error:
+        print(f"Error in getAllStudents: {error}")
